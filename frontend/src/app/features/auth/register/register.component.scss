@@ -1,0 +1,224 @@
+.register-container {
+  min-height: 100vh;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  background: #e8eef5; // Same background for seamless look
+  gap: 0; // Remove any gap between sections
+
+  @media (max-width: 968px) {
+    grid-template-columns: 1fr;
+  }
+}
+
+// LEFT SIDE - FORM
+.form-section {
+  padding: 60px 80px 60px 100px;
+  background: white; // Clean white background
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+
+  @media (max-width: 768px) {
+    padding: 40px 30px;
+  }
+}
+
+.success-alert {
+  background: #d1fae5;
+  color: #065f46;
+  padding: 12px 16px;
+  border-radius: 8px;
+  margin-bottom: 24px;
+  font-size: 14px;
+}
+
+.error-alert {
+  background: #fee2e2;
+  color: #991b1b;
+  padding: 12px 16px;
+  border-radius: 8px;
+  margin-bottom: 24px;
+  font-size: 14px;
+}
+
+.form-group-section {
+  margin-bottom: 36px;
+
+  h2 {
+    font-size: 15px;
+    font-weight: 600;
+    color: #2d3748;
+    margin: 0 0 16px 0;
+  }
+}
+
+.form-group {
+  margin-bottom: 12px;
+
+  input,
+  select {
+    width: 100%;
+    padding: 12px 14px;
+    border: 1px solid #d1d5db;
+    border-radius: 4px;
+    font-size: 14px;
+    color: #1f2937;
+    background: white;
+    transition: all 0.2s;
+
+    &::placeholder {
+      color: #9ca3af;
+    }
+
+    &:focus {
+      outline: none;
+      border-color: #6366f1;
+    }
+
+    &.error {
+      border-color: #ef4444;
+    }
+  }
+
+  select {
+    cursor: pointer;
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg width='10' height='6' viewBox='0 0 10 6' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1 1L5 5L9 1' stroke='%236b7280' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 14px center;
+    padding-right: 40px;
+  }
+}
+
+.phone-group {
+  display: grid;
+  grid-template-columns: 100px 1fr;
+  gap: 10px;
+
+  .phone-code,
+  .phone-number {
+    padding: 12px 14px;
+    border: 1px solid #d1d5db;
+    border-radius: 4px;
+    font-size: 14px;
+    color: #1f2937;
+    transition: all 0.2s;
+
+    &::placeholder {
+      color: #9ca3af;
+    }
+
+    &:focus {
+      outline: none;
+      border-color: #6366f1;
+    }
+  }
+}
+
+.intro-section {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  flex-wrap: wrap;
+
+  span {
+    font-size: 14px;
+    color: #4b5563;
+  }
+
+  .btn-introduce {
+    padding: 10px 24px;
+    background: #6366f1;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s;
+
+    &:hover {
+      background: #4f46e5;
+    }
+  }
+}
+
+.btn-submit {
+  width: 100%;
+  padding: 14px;
+  background: #8b95e5; // Lighter purple to match target
+  color: white;
+  border: none;
+  border-radius: 4px;
+  font-size: 15px;
+  font-weight: 500;
+  cursor: pointer;
+  margin-top: 20px;
+  transition: all 0.2s;
+
+  &:hover:not(:disabled) {
+    background: #6366f1;
+  }
+
+  &:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+}
+
+// RIGHT SIDE - AVATAR & LOGO
+.avatar-section {
+  background: white; // Light blue-gray background
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  padding: 40px;
+  border-left: none; // Explicitly remove any border
+
+  @media (max-width: 968px) {
+    display: none;
+  }
+
+  // Logo in top right corner
+  .logo {
+    position: absolute;
+    top: 40px;
+    right: 60px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+
+    h1 {
+      margin: 0;
+      font-size: 32px;
+      font-weight: 400;
+      color: #1e293b;
+      letter-spacing: 2px;
+    }
+
+    .logo-dots {
+      width: 40px;
+      height: 40px;
+      background-image: radial-gradient(circle, #94a3b8 2px, transparent 2px); // Gray dots, not blue
+      background-size: 8px 8px;
+      opacity: 0.4;
+    }
+  }
+
+  // Avatar centered
+  .avatar-placeholder {
+    width: 240px;
+    height: 240px;
+    background: #d4dce6; // Slightly darker gray-blue
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    svg {
+      opacity: 0.5;
+    }
+  }
+}

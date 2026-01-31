@@ -1,176 +1,139 @@
-<div class="auth-container">
-  <div class="auth-card">
-    <h1>Create Your Account</h1>
-    <p class="subtitle">Join Devy Platform today</p>
-
+<div class="register-container">
+  <!-- Left Side - Form -->
+  <div class="form-section">
     <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+      <!-- Success Message -->
+      <div *ngIf="successMessage" class="success-alert">
+        {{ successMessage }}
+      </div>
+
       <!-- Error Message -->
       <div *ngIf="errorMessage" class="error-alert">
         {{ errorMessage }}
       </div>
 
-      <!-- Personal Information -->
-      <div class="form-section">
-        <h3>Personal Information</h3>
-        
-        <div class="form-row">
-          <div class="form-group">
-            <label for="firstName">First Name *</label>
-            <input 
-              id="firstName"
-              type="text" 
-              formControlName="firstName"
-              [class.error]="hasError('firstName', 'required')"
-            />
-            <span *ngIf="hasError('firstName', 'required')" class="error-message">
-              First name is required
-            </span>
-          </div>
-
-          <div class="form-group">
-            <label for="lastName">Last Name *</label>
-            <input 
-              id="lastName"
-              type="text" 
-              formControlName="lastName"
-              [class.error]="hasError('lastName', 'required')"
-            />
-            <span *ngIf="hasError('lastName', 'required')" class="error-message">
-              Last name is required
-            </span>
-          </div>
-        </div>
+      <!-- Contact Section -->
+      <div class="form-group-section">
+        <h2>How can we contact you?</h2>
 
         <div class="form-group">
-          <label for="email">Email *</label>
           <input 
-            id="email"
             type="email" 
             formControlName="email"
-            placeholder="you@example.com"
-            [class.error]="hasError('email', 'required') || hasError('email', 'email')"
+            placeholder="john.doe@gmail.com"
+            [class.error]="hasError('email')"
           />
-          <span *ngIf="hasError('email', 'required')" class="error-message">
-            Email is required
-          </span>
-          <span *ngIf="hasError('email', 'email')" class="error-message">
-            Please enter a valid email
-          </span>
+        </div>
+
+        <div class="form-group">
+          <input 
+            type="text" 
+            formControlName="fullName"
+            placeholder="Full name"
+            [class.error]="hasError('fullName')"
+          />
+        </div>
+
+        <div class="phone-group">
+          <input 
+            type="text" 
+            formControlName="countryCode"
+            placeholder="Code"
+            class="phone-code"
+          />
+          <input 
+            type="text" 
+            formControlName="mobileNumber"
+            placeholder="Mobile number"
+            class="phone-number"
+          />
         </div>
       </div>
 
-      <!-- Password -->
-      <div class="form-section">
-        <h3>Security</h3>
-        
+      <!-- Location Section -->
+      <div class="form-group-section">
+        <h2>Location</h2>
         <div class="form-group">
-          <label for="password">Password *</label>
-          <input 
-            id="password"
-            type="password" 
-            formControlName="password"
-            [class.error]="hasError('password', 'required') || hasError('password', 'minlength')"
-          />
-          <span *ngIf="hasError('password', 'required')" class="error-message">
-            Password is required
-          </span>
-          <span *ngIf="hasError('password', 'minlength')" class="error-message">
-            Password must be at least 6 characters
-          </span>
-        </div>
-
-        <div class="form-group">
-          <label for="confirmPassword">Confirm Password *</label>
-          <input 
-            id="confirmPassword"
-            type="password" 
-            formControlName="confirmPassword"
-            [class.error]="hasError('confirmPassword', 'required') || passwordMismatch"
-          />
-          <span *ngIf="hasError('confirmPassword', 'required')" class="error-message">
-            Please confirm your password
-          </span>
-          <span *ngIf="passwordMismatch" class="error-message">
-            Passwords do not match
-          </span>
-        </div>
-      </div>
-
-      <!-- Location -->
-      <div class="form-section">
-        <h3>Location</h3>
-        
-        <div class="form-group">
-          <label for="countryId">Country *</label>
           <select 
-            id="countryId"
             formControlName="countryId"
-            [class.error]="hasError('countryId', 'required')"
+            [class.error]="hasError('countryId')"
           >
-            <option value="">Select a country</option>
+            <option value="">City and Country</option>
             <option *ngFor="let country of countries" [value]="country.id">
               {{ country.name }}
             </option>
           </select>
-          <span *ngIf="hasError('countryId', 'required')" class="error-message">
-            Country is required
-          </span>
         </div>
 
-        <div class="form-group">
-          <label for="cityId">City *</label>
+        <div class="form-group" *ngIf="registerForm.get('countryId')?.value">
           <select 
-            id="cityId"
             formControlName="cityId"
-            [class.error]="hasError('cityId', 'required')"
-            [disabled]="!registerForm.get('countryId')?.value"
+            [class.error]="hasError('cityId')"
           >
             <option value="">Select a city</option>
             <option *ngFor="let city of cities" [value]="city.id">
               {{ city.name }}
             </option>
           </select>
-          <span *ngIf="hasError('cityId', 'required')" class="error-message">
-            City is required
-          </span>
         </div>
       </div>
 
-      <!-- Work Preference -->
-      <div class="form-section">
-        <h3>Work Preferences</h3>
-        
+      <!-- Work Preference Section -->
+      <div class="form-group-section">
+        <h2>How much do you want to work?</h2>
         <div class="form-group">
-          <label for="workPreferenceId">Work Preference *</label>
           <select 
-            id="workPreferenceId"
             formControlName="workPreferenceId"
-            [class.error]="hasError('workPreferenceId', 'required')"
+            [class.error]="hasError('workPreferenceId')"
           >
-            <option value="">Select your preference</option>
+            <option value="">Fulltime/part time</option>
             <option *ngFor="let pref of workPreferences" [value]="pref.id">
               {{ pref.name }}
             </option>
           </select>
-          <span *ngIf="hasError('workPreferenceId', 'required')" class="error-message">
-            Work preference is required
-          </span>
+        </div>
+      </div>
+
+      <!-- Personal Intro Section -->
+      <div class="form-group-section">
+        <h2>Personal Intro</h2>
+        <div class="intro-section">
+          <span>Take a video introducing yourself:</span>
+          <button 
+            type="button" 
+            class="btn-introduce"
+            (click)="onIntroduceYourself()"
+          >
+            Introduce yourself
+          </button>
         </div>
       </div>
 
       <!-- Submit Button -->
       <button 
         type="submit" 
-        class="btn-primary"
+        class="btn-submit"
         [disabled]="isLoading || registerForm.invalid"
       >
-        {{ isLoading ? 'Creating Account...' : 'Create Account' }}
+        {{ isLoading ? 'Submitting...' : 'Submit' }}
       </button>
     </form>
+  </div>
 
-    <p class="login-link">
-      Already have an account? 
-      <a routerLink="/auth/login">Sign in</a>
-    </p>
+  <!-- Right Side - Avatar with Logo -->
+  <div class="avatar-section">
+    <!-- Logo in top right -->
+    <div class="logo">
+      <div class="logo-dots"></div>
+      <h1>devy</h1>
+    </div>
+
+    <!-- Avatar centered -->
+    <div class="avatar-placeholder">
+      <svg width="80" height="80" viewBox="0 0 80 80" fill="none">
+        <circle cx="40" cy="30" r="15" fill="#8B9DB8"/>
+        <path d="M20 65C20 55 28 50 40 50C52 50 60 55 60 65" fill="#8B9DB8"/>
+      </svg>
+    </div>
   </div>
 </div>
