@@ -2,7 +2,8 @@ import { Injectable, inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable, map } from 'rxjs';
 import { environment } from '../../../environments/environment';
-import { ApiResponse, Country, City, WorkPreference } from '../models/api.models';
+import { ApiResponse } from '../models/api-response.model';
+import { Country, City, WorkPreference } from '../models/location.model';
 
 @Injectable({
   providedIn: 'root'

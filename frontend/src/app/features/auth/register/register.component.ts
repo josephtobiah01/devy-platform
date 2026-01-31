@@ -4,7 +4,7 @@ import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angula
 import { Router, RouterLink } from '@angular/router';
 import { AuthService } from '../../../core/services/auth.service';
 import { LocationService } from '../../../core/services/location.service';
-import { Country, City, WorkPreference } from '../../../shared/models/api.models';
+import { Country, City, WorkPreference } from '../../../core/models/location.model';
 
 @Component({
   selector: 'app-register',
